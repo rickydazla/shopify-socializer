@@ -1,0 +1,43 @@
+{% assign productUrl = shop.url | append: product.url %}
+{% assign productDescr = product.title %}
+{% assign productImg = product.images[0] | product_img_url: 'original' | prepend: 'https:' %}
+{% if settings.socializer_style == "standard" %}
+<div class="socializer">
+  {% if settings.socializer_enable_pin == true %}
+  <a href="https://www.pinterest.com/pin/create/button/"
+    data-pin-do="buttonPin"
+    data-pin-custom="true"
+    data-pin-save="false"
+    data-pin-url="{{ productUrl }}"
+    data-pin-description="{{ productDescr }}"
+    data-pin-media="{{ productImg }}">
+    <img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" />
+  </a>
+  {% endif %}
+  {% if settings.socializer_enable_fb == true %}
+  <div class="fb-like" data-href="{{ productUrl }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+  {% endif %}
+  {% if settings.socializer_enable_tweet == true %}
+  <a class="twitter-share-button"
+    href="https://twitter.com/intent/tweet?text={{ productDescr | url_param_escape }}">Tweet</a>
+  {% endif %}
+  {% if settings.socializer_enable_google == true %}
+  <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{{ productUrl }}"></div>
+  {% endif %}
+</div>
+{% elsif settings.socializer_style == "custom" %}
+<div class="socializer custom">
+  {% if settings.socializer_enable_pin == true %}
+  <a data-pin-custom="true" href="https://www.pinterest.com/pin/create/button/?url={{ productUrl | url_encode }}&media={{ productImg | url_encode }}&description={{ productDescr | url_param_escape }}"><i class="ss-pinterest"></i></a>
+  {% endif %}
+  {% if settings.socializer_enable_fb == true %}
+  <a href="https://www.facebook.com/sharer/sharer.php?u={{ productUrl | url_encode }}"><i class="ss-facebook"></i></a>
+  {% endif %}
+  {% if settings.socializer_enable_tweet == true %}
+  <a href="https://twitter.com/intent/tweet?text={{ productDescr | url_param_escape }}&url={{ productUrl | url_encode }}"><i class="ss-twitter"></i></a>
+  {% endif %}
+  {% if settings.socializer_enable_google == true %}
+  <a href="https://plus.google.com/share?url={{ productUrl | url_encode }}"><i class="ss-googleplus"></i></a>
+  {% endif %}
+</div>
+{% endif %}

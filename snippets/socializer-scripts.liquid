@@ -1,0 +1,36 @@
+{% comment %}
+pinterest docs: https://developers.pinterest.com/docs/widgets/save/?
+google docs: https://developers.google.com/+/web/share/
+fb docs: https://developers.facebook.com/docs/sharing/reference/share-dialog
+tweet docs: https://dev.twitter.com/web/tweet-button
+            https://dev.twitter.com/web/tweet-button/web-intent
+{% endcomment %}
+{% if settings.socializer_style == "standard" %}
+  {% if settings.socializer_enable_pin == true %}
+  <script src="https://assets.pinterest.com/js/pinit.js" async defer></script>
+  {% endif %}
+  {% if settings.socializer_enable_tweet == true %}
+  <script src="https://platform.twitter.com/widgets.js" async defer></script>
+  {% endif %}
+  {% if settings.socializer_enable_google == true %}
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  {% endif %}
+  {% if settings.socializer_enable_fb == true %}
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  {% endif %}
+{% elsif settings.socializer_style == "custom" %}
+<script type="text/javascript">
+  $('.socializer.custom a').click(function(e){
+    var url = $(this).attr('href');
+    window.open(url,'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    return false; 
+  });
+</script>
+{% endif %}

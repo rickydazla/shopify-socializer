@@ -1,0 +1,45 @@
+{
+  "name": "Socializer",
+  "settings": [
+    {
+      "default": "disabled",
+      "id": "socializer_style",
+      "label": "Select social icons style",
+      "options": [
+        {
+          "label": "Disabled",
+          "value": "disabled"
+        },
+        {
+          "label": "Standard",
+          "value": "standard"
+        },
+        {
+          "label": "Custom Icons",
+          "value": "custom"
+        }
+      ],
+      "type": "select"
+    },
+    {
+      "id": "socializer_enable_pin",
+      "label": "Enable Pinterest for Products",
+      "type": "checkbox"
+    },
+    {
+      "id": "socializer_enable_fb",
+      "label": "Enable Facebook for Products",
+      "type": "checkbox"
+    },
+    {
+      "id": "socializer_enable_tweet",
+      "label": "Enable Twitter for Products",
+      "type": "checkbox"
+    },
+    {
+      "id": "socializer_enable_google",
+      "label": "Enable GooglePlus for Products",
+      "type": "checkbox"
+    }
+  ]
+}
